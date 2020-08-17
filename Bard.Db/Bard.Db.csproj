@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <Nullable>enable</Nullable>
+        <PackageId>Bard.db</PackageId>
+        <Version>0.0.1</Version>
+        <Authors>Stuart Clark</Authors>
+        <Company>Stuart Clark</Company>
+        <PackageTags>Integration Testing Docker Database</PackageTags>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageVersion />
+        <Description>Bard.Db is a .NET library for running docker database instances from .net code for testing.</Description>
+        <PackageProjectUrl>https://docs.bard.net.nz</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/sjclark76/Bard</RepositoryUrl>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <DocumentationFile>bin\Debug\Bard.Db.xml</DocumentationFile>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <DocumentationFile>bin\Release\Bard.Db.xml</DocumentationFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Docker.DotNet" Version="3.125.4" />
+    </ItemGroup>
+
+</Project>
