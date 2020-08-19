@@ -4,7 +4,7 @@
         <TargetFramework>netstandard2.1</TargetFramework>
         <Nullable>enable</Nullable>
         <PackageId>Bard.db</PackageId>
-        <Version>0.0.1</Version>
+        <Version>0.0.2</Version>
         <Authors>Stuart Clark</Authors>
         <Company>Stuart Clark</Company>
         <PackageTags>Integration Testing Docker Database</PackageTags>
