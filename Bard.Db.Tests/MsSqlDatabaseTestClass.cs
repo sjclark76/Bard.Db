@@ -16,10 +16,10 @@ namespace Bard.Db.Tests
         public void Start_And_Stop_SQL_server_2017_latest()
         {
             var db = new MsSqlDatabase(
-                "BardDB_SQL_2017",
-                "Password1",
-                "1066",
-                "2017-latest");
+                databaseName: "BardDB_SQL_2017",
+                saPassword: "Password1",
+                portNumber: "1066",
+                tagName: "2017-latest");
 
             var result = db.StartDatabase();
 

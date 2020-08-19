@@ -24,10 +24,10 @@ Create a new instance of Bard.Db.MsSqlDatabase passing in the database name,  SA
 
 ```c#
 var db = new MsSqlDatabase(
-                "BardDB_SQL_2017",
-                "Password1",
-                "1066",
-                "2017-latest");
+           databaseName: "BardDB_SQL_2017",
+           saPassword: "Password1",
+           portNumber: "1066",
+           tagName: "2017-latest");
 ```
 
 ### Starting up the Database
@@ -48,11 +48,10 @@ db.StopDatabase();
 
 ## PostgreSQL
 ``` c#
+var db = new PostgresDatabase(
+           databaseName: "PostgreSQL_latest",
+           postgresUser: "Db_user",
+           password: "Password1");
 
-         var db = new PostgresDatabase(
-                databaseName: "PostgreSQL_latest",
-                postgresUser: "Db_user",
-                password: "Password1");
-
-            var result = db.StartDatabase();
+var result = db.StartDatabase();
 ```
