@@ -45,3 +45,14 @@ To stop the database simply call.
 ``` c#
 db.StopDatabase();
 ```
+
+## PostgreSQL
+``` c#
+
+         var db = new PostgresDatabase(
+                databaseName: "PostgreSQL_latest",
+                postgresUser: "Db_user",
+                password: "Password1");
+
+            var result = db.StartDatabase();
+```

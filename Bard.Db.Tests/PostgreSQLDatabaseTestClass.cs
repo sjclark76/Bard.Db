@@ -16,9 +16,9 @@ namespace Bard.Db.Tests
         public void Start_And_Stop_PostgreSQL_latest()
         {
             var db = new PostgresDatabase(
-                "PostgreSQL_latest",
-                "Db_user",
-                "Password1");
+                databaseName: "PostgreSQL_latest",
+                postgresUser: "Db_user",
+                password: "Password1");
 
             var result = db.StartDatabase();
 
