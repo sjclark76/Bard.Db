@@ -3,11 +3,11 @@ using Xunit.Abstractions;
 
 namespace Bard.Db.Tests
 {
-    public class DbTestClass
+    public class MsSqlDatabaseTestClass
     {
         private readonly ITestOutputHelper _output;
 
-        public DbTestClass(ITestOutputHelper output)
+        public MsSqlDatabaseTestClass(ITestOutputHelper output)
         {
             _output = output;
         }
@@ -16,14 +16,14 @@ namespace Bard.Db.Tests
         public void Start_And_Stop_SQL_server_2017_latest()
         {
             var db = new MsSqlDatabase(
-                databaseName: "BardDB_SQL_2017",
-                portNumber: "1066", 
-                image: "microsoft/mssql-server-linux", 
-                tagName: "2017-latest");
+                "BardDB_SQL_2017",
+                "Password1",
+                "1066",
+                "2017-latest");
 
             var result = db.StartDatabase();
 
-            _output.WriteLine(message: result);
+            _output.WriteLine(result);
 
             db.StopDatabase();
         }
@@ -31,7 +31,9 @@ namespace Bard.Db.Tests
         [Fact]
         public void Start_And_Stop_SQL_server_2019_latest()
         {
-            var db = new MsSqlDatabase("BardDB_SQL_2019", "1066");
+            var db = new MsSqlDatabase("BardDB_SQL_2019", 
+                "Password1", 
+                "1066");
 
             var result = db.StartDatabase();
 
@@ -43,7 +45,9 @@ namespace Bard.Db.Tests
         [Fact]
         public void Start_And_Stop_SQL_server_2019_CU6_ubuntu_16_04()
         {
-            var db = new MsSqlDatabase("BardDB_SQL_2019_CU6_ubuntu_16.04", "1066", "mcr.microsoft.com/mssql/server",
+            var db = new MsSqlDatabase("BardDB_SQL_2019_CU6_ubuntu_16.04", 
+                "Password1", 
+                "1066",
                 "2019-CU6-ubuntu-16.04");
 
             var result = db.StartDatabase();
