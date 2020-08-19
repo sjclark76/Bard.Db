@@ -5,21 +5,41 @@ using Docker.DotNet.Models;
 
 namespace Bard.Db
 {
+    /// <summary>
+    ///     Bard.Db Postgres Database class used for basic management a docker instance of PostgreSQL
+    /// <remarks>
+    ///     Based off postgres docker image. Tag should be valid for this image see
+    ///     website for full list.
+    ///     https://hub.docker.com/_/postgres
+    /// </remarks>  
+    /// </summary>
     public class PostgresDatabase : BardDbBase
     {
         private readonly string _password;
         private readonly string _postgresUser;
 
-
-        public PostgresDatabase(string databaseName, string portNumber = "5432", string imageName = "postgres",
-            string tagName = "postgres", string postgresUser = "user1", string password = "Password1") : base(
-            databaseName, portNumber, imageName, tagName)
+        
+        /// <summary>
+        /// PostgresDatabase Constructor
+        /// </summary>
+        /// <param name="databaseName">The name of the MSSQl PostgreSQL instance</param>
+        /// <param name="postgresUser">The name of the PostgreSQL user</param>
+        /// <param name="password">The PostgreSQL password</param>
+        /// <param name="portNumber">The port number (Optional) default value 5432</param>
+        /// <param name="tagName">The docker tag name (Optional) default value latest</param>
+        public PostgresDatabase(string databaseName, 
+            string postgresUser, 
+            string password ,
+            string portNumber = "5432",
+            string tagName = "latest" 
+            ) : base(
+            databaseName, portNumber, "postgres", tagName)
         {
             _postgresUser = postgresUser;
             _password = password;
         }
 
-        protected override async Task<string> CreateContainerIfRequired()
+        private protected override async Task<string> CreateContainerIfRequired()
         {
             var testDb = await RetrieveContainer();
 
