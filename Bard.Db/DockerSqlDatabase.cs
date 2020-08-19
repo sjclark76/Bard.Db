@@ -48,7 +48,7 @@ namespace Bard.Db
             return _dockerClient.Containers.StopContainerAsync(_dbContainerId, new ContainerStopParameters());
         }
         
-        private async Task<string> StartDatabaseAsync()
+        public async Task<string> StartDatabaseAsync()
         {
             await PullImageIfRequired();
 
