@@ -10,12 +10,14 @@ The simplest way to do this is to use either the NuGet package manager, or the d
 Using the NuGet package manager console within Visual Studio run the following command:
 Install-Package Bard.db
 
+```
 Install-Package Bard.db
+```
 
 Or using the .net core CLI from a terminal window:
-
+```
 dotnet add package Bard.db
-
+```
 ## Microsoft SQL
 
 ### Creating a SQL Server instance.
