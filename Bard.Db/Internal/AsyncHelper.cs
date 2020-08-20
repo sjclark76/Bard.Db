@@ -2,7 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Bard.Db
+namespace Bard.Db.Internal
 {
     internal static class AsyncHelper
     {

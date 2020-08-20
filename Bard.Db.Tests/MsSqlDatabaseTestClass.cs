@@ -3,6 +3,7 @@ using Xunit.Abstractions;
 
 namespace Bard.Db.Tests
 {
+    
     public class MsSqlDatabaseTestClass
     {
         private readonly ITestOutputHelper _output;

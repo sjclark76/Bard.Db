@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using Bard.Db.Internal;
 using Docker.DotNet;
 using Docker.DotNet.Models;
 using Newtonsoft.Json;
@@ -27,24 +28,29 @@ namespace Bard.Db
             DockerClient = new DockerClientConfiguration().CreateClient();
         }
 
-        
         /// <summary>
-        /// The database name
+        ///     The images full name including the tag
+        /// </summary>
+        public string ImageFullName => $"{ImageName}:{TagName}";
+
+
+        /// <summary>
+        ///     The database name
         /// </summary>
         public string DatabaseName { get; }
-        
+
         /// <summary>
-        /// The external Port Number for the database
+        ///     The external Port Number for the database
         /// </summary>
         public string PortNumber { get; }
-        
+
         /// <summary>
-        /// The docker Image Name used for the database
+        ///     The docker Image Name used for the database
         /// </summary>
         public string ImageName { get; }
-        
+
         /// <summary>
-        /// The Image Tag used for the database
+        ///     The Image Tag used for the database
         /// </summary>
         public string TagName { get; }
 
@@ -82,7 +88,7 @@ namespace Bard.Db
         /// <returns>True if successful</returns>
         public Task<bool> StopDatabaseAsync()
         {
-            Console.WriteLine($"Starting Container {ImageName}:{TagName} - {_dbContainerId}");
+            Console.WriteLine($"Stopping Container {ImageFullName} - {_dbContainerId}");
 
             return DockerClient.Containers.StopContainerAsync(_dbContainerId, new ContainerStopParameters());
         }
@@ -125,8 +131,6 @@ namespace Bard.Db
 
         private protected async Task<ContainerListResponse?> RetrieveContainer()
         {
-            var fullImage = $"{ImageName}:{TagName}";
-
             var containers = await DockerClient.Containers.ListContainersAsync(new ContainersListParameters
             {
                 All = true,
@@ -136,11 +140,11 @@ namespace Bard.Db
                 }
             });
 
-            var matchingContainer = containers.FirstOrDefault(response => response.Image != fullImage);
+            var matchingContainer = containers.FirstOrDefault(response => response.Image != ImageFullName);
 
-            if (matchingContainer != null) ThrowDuplicateContainerException(fullImage, matchingContainer);
+            if (matchingContainer != null) ThrowDuplicateContainerException(ImageFullName, matchingContainer);
 
-            var testDb = containers.SingleOrDefault(response => response.Image == fullImage);
+            var testDb = containers.SingleOrDefault(response => response.Image == ImageFullName);
 
             return testDb;
         }
@@ -165,7 +169,7 @@ namespace Bard.Db
 
         private async Task<string> StartContainer(string dbContainerId)
         {
-            Console.WriteLine($"Starting Container {ImageName}:{TagName} - {dbContainerId}");
+            Console.WriteLine($"Starting Container {ImageFullName} - {dbContainerId}");
 
             await DockerClient.Containers.StartContainerAsync(dbContainerId, new ContainerStartParameters());
 

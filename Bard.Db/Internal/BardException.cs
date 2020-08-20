@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace Bard.Db
+namespace Bard.Db.Internal
 {
     internal class BardException: Exception
     {

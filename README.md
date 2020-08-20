@@ -21,7 +21,6 @@ dotnet add package Bard.db
 ### Creating a SQL Server instance.
 
 Create a new instance of Bard.Db.MsSqlDatabase passing in the database name,  SA Password, port number,  tag version.
-
 ```c#
 var db = new MsSqlDatabase(
            databaseName: "BardDB_SQL_2017",
