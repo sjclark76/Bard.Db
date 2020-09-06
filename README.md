@@ -1,5 +1,7 @@
 # Bard.Db
 
+[![Join the chat at https://gitter.im/Bard-NET/Bard.Db](https://badges.gitter.im/Bard-NET/Bard.Db.svg)](https://gitter.im/Bard-NET/Bard.Db?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Bard.Db is built on top of the Docker.Net project which does most of the hard work. Bard.Db expects that Docker is installed without it it's not going to work.
 The idea behind bard.Db is to make it easy to spin up an instance of a database from code especially when we are running integration tests.
 
