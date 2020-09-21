@@ -42,6 +42,21 @@ namespace Bard.Db.Tests
 
             db.StopDatabase();
         }
+        
+        [Fact]
+        public void Start_And_delete_PostgreSQL_latest()
+        {
+            var db = new PostgresDatabase(
+                databaseName: "PostgreSQL_latest",
+                postgresUser: "Db_user",
+                password: "Password1");
+
+            var result = db.StartDatabase();
+
+            _output.WriteLine(result);
+
+            db.DeleteDatabase();
+        }
     }
 }
 

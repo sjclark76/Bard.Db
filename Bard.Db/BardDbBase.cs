@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Threading.Tasks;
 using Bard.Db.Internal;
 using Docker.DotNet;
@@ -59,6 +60,30 @@ namespace Bard.Db
         /// </summary>
         public bool IsWindowsHost => RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
 
+        /// <summary>
+        /// Deletes the underlying container for the database.
+        /// </summary>
+        public void DeleteDatabase()
+        {
+            AsyncHelper.RunSync(() => DeleteDatabaseAsync());
+        }
+        
+        /// <summary>
+        /// Deletes the underlying container for the database.
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public async Task DeleteDatabaseAsync(CancellationToken cancellationToken = default)
+        {
+            var result = await StopDatabaseAsync();
+
+            if (result)
+            {
+                await DockerClient.Containers.RemoveContainerAsync(_dbContainerId, new ContainerRemoveParameters(),
+                    cancellationToken);
+            }
+        }
+        
         /// <summary>
         ///     Start the database
         ///     <remarks>Will download the image and create the container if it does not exist already.</remarks>
