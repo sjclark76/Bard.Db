@@ -22,7 +22,7 @@ namespace Bard.Db
         /// <summary>
         /// PostgresDatabase Constructor
         /// </summary>
-        /// <param name="databaseName">The name of the MSSQl PostgreSQL instance</param>
+        /// <param name="databaseName">The name of the PostgreSQL instance</param>
         /// <param name="postgresUser">The name of the PostgreSQL user</param>
         /// <param name="password">The PostgreSQL password</param>
         /// <param name="portNumber">The port number (Optional) default value 5432</param>
@@ -34,6 +34,29 @@ namespace Bard.Db
             string tagName = "latest" 
             ) : base(
             databaseName, portNumber, "postgres", tagName)
+        {
+            _postgresUser = postgresUser;
+            _password = password;
+        }
+        
+        
+        /// <summary>
+        /// PostgresDatabase Constructor
+        /// </summary>
+        /// <param name="databaseName">The name of the PostgreSQL instance</param>
+        /// <param name="postgresUser">The name of the PostgreSQL user</param>
+        /// <param name="password">The PostgreSQL password</param>
+        /// <param name="portNumber">The port number (Optional) default value 5432</param>
+        /// <param name="imageName">The docker image name (Optional) default value postgres</param>
+        /// <param name="tagName">The docker tag name (Optional) default value latest</param>
+        public PostgresDatabase(string databaseName, 
+            string postgresUser, 
+            string password ,
+            string imageName,
+            string portNumber = "5432",
+            string tagName = "latest" 
+            ) : base(
+            databaseName, portNumber, imageName, tagName)
         {
             _postgresUser = postgresUser;
             _password = password;

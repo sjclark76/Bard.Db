@@ -16,7 +16,7 @@ namespace Bard.Db.Tests
         public void Start_And_Stop_PostgreSQL_latest()
         {
             var db = new PostgresDatabase(
-                databaseName: "PostgreSQL_latest",
+                databaseName: "PostgreSQL_StartStop_latest",
                 postgresUser: "Db_user",
                 password: "Password1");
 
@@ -27,6 +27,22 @@ namespace Bard.Db.Tests
             db.StopDatabase();
         }
 
+        [Fact]
+        public void Start_And_Delete_NonOfficialPostgreSQL_latest()
+        {
+            var db = new PostgresDatabase(
+                databaseName: "Bitnami_PostgreSQL_latest",
+                postgresUser: "Db_user",
+                password: "Password1",
+                imageName: "bitnami/postgresql");
+
+            var result = db.StartDatabase();
+
+            _output.WriteLine(result);
+
+            db.DeleteDatabase();
+        }
+        
         [Fact]
         public void Start_And_Stop_PostgreSQL_alpine()
         {
@@ -47,7 +63,7 @@ namespace Bard.Db.Tests
         public void Start_And_delete_PostgreSQL_latest()
         {
             var db = new PostgresDatabase(
-                databaseName: "PostgreSQL_latest",
+                databaseName: "PostgreSQL_Delete_latest",
                 postgresUser: "Db_user",
                 password: "Password1");
 
