@@ -17,6 +17,10 @@ jobs:
         dotnet-version: 3.1.301
     - name: Install dependencies
       run: dotnet restore
+    - name: pull sql images
+      run: docker pull mcr.microsoft.com/mssql/server:2019-CU6-ubuntu-16.04; docker pull mcr.microsoft.com/mssql/server:2017-latest; docker pull mcr.microsoft.com/mssql/server:2019-latest
+    - name: pull postgres images
+      run: docker pull postgres:latest; docker pull postgres:alpine; docker pull bitnami/postgresql:latest
     - name: Build
       run: dotnet build --configuration Release --no-restore   
     - name: Test
