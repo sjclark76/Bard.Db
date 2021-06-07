@@ -138,7 +138,15 @@ namespace Bard.Db
         {
             var dataBaseImages = await DockerClient.Images.ListImagesAsync(new ImagesListParameters
             {
-                MatchName = $"{ImageName}:{TagName}"
+                // MatchName has been deprecated from docker, but not yet from Docker.DotNet api
+                // https://github.com/dotnet/Docker.DotNet/issues/489
+                Filters = new Dictionary<string, IDictionary<string, bool>>
+                {
+                    ["reference"] = new Dictionary<string, bool>
+                    {
+                        [$"{ImageName}:{TagName}"] = true
+                    }
+                },
             });
 
             if (dataBaseImages.Any() == false)
