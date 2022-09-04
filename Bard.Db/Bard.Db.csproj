@@ -24,7 +24,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Docker.DotNet" Version="3.125.4" />
+      <PackageReference Include="Docker.DotNet" Version="3.125.11" />
       <PackageReference Include="MinVer" Version="2.3.0">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
